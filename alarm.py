@@ -1,6 +1,26 @@
 from lifxlan import Light, Group
+import musicpd
 import time
 import settings
+
+# MPD setup
+cli = musicpd.MPDClient()
+cli.connect()
+
+# MPD playlist setup
+cli.clear()
+cli.load(settings.playlist_name)
+
+# MPD sequence; using send-prefixed methods to avoid locking thread
+cli.send_setvol(5)
+time.sleep(5)
+cli.send_play()
+time.sleep(10)
+cli.send_setvol(20)
+time.sleep(10)
+cli.send_setvol(35)
+time.sleep(10)
+cli.send_stop()
 
 # Set up LIFX objects
 light_1 = Light(settings.light_1_mac, settings.light_1_ip)
@@ -19,3 +39,6 @@ time.sleep(settings.fade_in_stage_seconds)
 g.set_color(settings.end_stage_color, 1)
 time.sleep(settings.end_stage_seconds)
 g.set_power(0, 1)
+
+# MPD cleanup
+cli.disconnect()

@@ -14,6 +14,10 @@ start_stage_color = [0, 0, 0, 7000]
 fade_in_stage_color = [0, 0, 65535, 7000]
 end_stage_color = [0, 0, 32807, 2000]
 
+# MPD settings
+
+playlist_name = "test_playlist"
+
 # Retrieve LIFX light mac and ip from a .env file in this script's directory
 # See https://github.com/mclarkk/lifxlan for details on getting these using lifxlan
 
