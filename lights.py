@@ -1,3 +1,10 @@
+"""
+lights.py
+
+Usage:
+    This script is meant to be run as a cron job set by set_alarm.py.
+"""
+
 from lifxlan import Light, Group
 import time
 import settings
