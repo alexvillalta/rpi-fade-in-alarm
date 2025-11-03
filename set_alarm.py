@@ -66,6 +66,27 @@ def main():
     except Exception as e:
         error_exit(f"Failed to access crontab: {e}")
 
+    # Add some required env variables to crontab 
+    # TODO: find more elegant way to do this without needing to specify these here
+    env_vars_required = [
+        "PATH", 
+        "XDG_SESSION_TYPE", 
+        "XDG_SESSION_ID", 
+        "XDG_RUNTIME_DIR", 
+        "SSH_CONNECTION", 
+        "SSH_CLIENT", 
+        "SSH_TTY", 
+        "TEXTDOMAIN", 
+        "DBUS_SESSION_BUS_ADDRESS",
+    ]
+    for var_name in env_vars_required:
+        if var_name in os.environ:
+            var_value = os.environ[var_name]
+            cron.env[var_name] = var_value
+            print(f"Set cron env variable: {var_name}={var_value}")
+        else:
+            print(f"Warning: env variable '{var_name}' not found in current user's env variables")
+
     # Remove any existing jobs created by this script to avoid duplicates
     lights_comment = "rpi-fade-in-alarm-lights"
     sound_comment = "rpi-fade-in-alarm-sound"
