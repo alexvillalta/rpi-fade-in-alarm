@@ -19,20 +19,10 @@ def main():
         print(f"Failed to access user crontab: {e}")
         sys.exit(1)
 
-    removed_any = False
     for comment in COMMENTS:
-        jobs = list(cron.find_comment(comment))
-        if jobs:
-            for job in jobs:
-                cron.remove(job)
-            print(f"Removed {len(jobs)} job(s) with comment '{comment}'.")
-            removed_any = True
+        cron.remove_all(comment=comment)
 
-    if removed_any:
-        cron.write()
-        print("Crontab updated.")
-    else:
-        print("No alarms were set.")
+    cron.write()
 
 if __name__ == "__main__":
     main()
