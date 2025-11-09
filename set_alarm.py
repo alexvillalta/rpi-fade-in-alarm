@@ -48,7 +48,7 @@ def parse_args(argv):
     return hour, minute, lights_offset_minutes, weather_offset_minutes, weather_location
 
 def compute_offset_time(hour: int, minute: int, offset_minutes: int):
-    total_minutes = (hour * 60 + minute - offset_minutes) % (24 * 60)
+    total_minutes = (hour * 60 + minute + offset_minutes) % (24 * 60)
     target_hour = total_minutes // 60
     target_minute = total_minutes % 60
     return target_hour, target_minute
