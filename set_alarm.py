@@ -32,7 +32,7 @@ def parse_args(argv):
         weather_offset_minutes = int(argv[4])
         if len(argv) == 6:
             weather_location = str(argv[5])
-        else
+        else:
             weather_location = ""
     except ValueError:
         error_exit("First 4 arguments must be integers and weather_location must be a string")
