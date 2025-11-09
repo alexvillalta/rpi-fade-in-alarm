@@ -10,7 +10,7 @@ Remove any cron jobs created by set_alarm.py. Looks for jobs with comments
 Assisted by Microsoft Copilot
 """
 
-COMMENTS = ("rpi-fade-in-alarm-lights", "rpi-fade-in-alarm-sound")
+COMMENTS = ("rpi-fade-in-alarm-lights", "rpi-fade-in-alarm-sound", "rpi-fade-in-alarm-weather")
 
 def main():
     try:
